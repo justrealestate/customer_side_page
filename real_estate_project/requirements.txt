@@ -1,0 +1,9 @@
+asgiref==3.8.1
+DateTime==5.5
+Django==4.0
+mysqlclient==2.2.4
+pillow==10.4.0
+pytz==2024.2
+setuptools==75.2.0
+sqlparse==0.5.1
+zope.interface==7.1.1

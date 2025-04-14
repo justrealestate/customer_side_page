@@ -1,0 +1,56 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h3 class="alert alert-primary text-center">Residential</h3>
+<div class="row">
+    <div class="d-grid gap-2 col-3 mx-auto">
+        <a href="admin_properties_list/residential" class="btn btn-primary btn-lg">All</a>
+    </div>
+    <div class="d-grid gap-2 col-3 mx-auto">
+        <a href="admin_properties_list/residential_rent" class="btn btn-primary btn-lg">Residential Rent</a>
+    </div>
+    <div class="d-grid gap-2 col-3 mx-auto">
+        <a href="admin_properties_list/residential_resale" class="btn btn-primary btn-lg">Residential Resale</a>
+    </div>
+    <div class="d-grid gap-2 col-3 mx-auto">
+        <a href="admin_properties_list/residential_lease" class="btn btn-primary btn-lg">Residential Lease</a>
+    </div>
+</div><br>
+
+<h3 class="alert alert-primary text-center">Commercial</h3>
+
+<div class="row">
+    <div class="d-grid gap-2 col-3 mx-auto">
+        <a href="admin_properties_list/commercial" class="btn btn-maroon btn-lg">All</a>
+    </div>
+    <div class="d-grid gap-2 col-3 mx-auto">
+        <a href="admin_properties_list/commercial_rent" class="btn btn-maroon btn-lg">Commercial Rent</a>
+    </div>
+    <div class="d-grid gap-2 col-3 mx-auto">
+        <a href="admin_properties_list/commercial_resale" class="btn btn-maroon btn-lg">Commercial Resale</a>
+    </div>
+    <div class="d-grid gap-2 col-3 mx-auto">
+        <a href="admin_properties_list/commercial_lease" class="btn btn-maroon btn-lg">Commercial Lease</a>
+    </div>
+</div><br>
+
+<h3 class="alert alert-primary text-center">Land</h3>
+
+<div class="row">
+    <div class="d-grid gap-2 col-3 mx-auto">
+        <a href="admin_properties_list/land" class="btn btn-success btn-lg">All</a>
+    </div>
+    <div class="d-grid gap-2 col-3 mx-auto">
+        <a href="admin_properties_list/land_rent" class="btn btn-success btn-lg">Land Rent</a>
+    </div>
+    <div class="d-grid gap-2 col-3 mx-auto">
+        <a href="admin_properties_list/land_resale" class="btn btn-success btn-lg">Land Resale</a>
+    </div>
+    <div class="d-grid gap-2 col-3 mx-auto">
+        <a href="admin_properties_list/land_lease" class="btn btn-success btn-lg">Land Lease</a>
+    </div>
+</div>
+
+{% endblock %}

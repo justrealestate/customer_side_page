@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{% static 'gif/information_tab.gif' %}" class="img-fluid" alt="Information Tab">
+        </div>
+        <div class="col-md-6">
+            <form class="form-inline">
+                {% csrf_token %}
+
+                <div class="form-group mb-3">
+                    <label for="Length">Length</label>
+                    <input type="text" id="Length" class="form-control" value="{{ land_individual.Length }}" disabled>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Width">Width</label>
+                    <input type="text" id="Width" class="form-control" value="{{ land_individual.Width }}" disabled>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="PlotArea">PlotArea</label>
+                    <input type="text" id="PlotArea" class="form-control" value="{{ land_individual.PlotArea }}"
+                        disabled>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Cent">Cent</label>
+                    <input type="text" id="Cent" class="form-control" value="{{ land_individual.Cent }}" disabled>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Acre">Acre</label>
+                    <input type="text" id="Acre" class="form-control" value="{{ land_individual.Acre }}" disabled>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="District">District</label>
+                    <input type="text" id="District" class="form-control" value="{{ land_individual.District }}"
+                        disabled>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Town">Town</label>
+                    <input type="text" id="Town" class="form-control" value="{{ land_individual.Town }}" disabled>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Street">Street</label>
+                    <input type="text" id="Street" class="form-control" value="{{ land_individual.Street }}" disabled>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="PricePerCent">Price Per Cent</label>
+                    <input type="text" class="form-control" value="{{ land_individual.PricePerCent }}" disabled>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="PricePerSquareFeet">Price Per Square Feet</label>
+                    <input type="text" class="form-control" value="{{ land_individual.PricePerSquareFeet }}" disabled>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="TotalPrice">Total Price</label>
+                    <input type="text" class="form-control" value="{{ land_individual.TotalPrice }}" disabled>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Description">Description</label>
+                    <textarea id="" class="form-control" disabled>{{ land_individual.Description }}</textarea>
+                </div>
+                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        {% for land_image in land_images %}
+                        <button type="button" data-bs-target="#carouselExampleFade"
+                            data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"
+                            aria-current="{% if forloop.first %}true{% endif %}"
+                            aria-label="Slide {{ forloop.counter }}"></button>
+                        {% endfor %}
+
+                    </div>
+                    <div class="carousel-inner">
+                        {% for land_image in land_images %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ land_image.Image.url }}" class="d-block w-100" alt="{{ forloop.counter }}1">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <br>
+                <button type="button" class="btn btn-primary send" name="">Interested</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

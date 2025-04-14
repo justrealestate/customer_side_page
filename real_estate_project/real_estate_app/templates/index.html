@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <h4 class="alert alert-primary text-center">Land</h2>
+      
+    <div class="row">
+        {% for i in land %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <img src="{% static 'images/land.png' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-title">For: <button class="btn btn-info text-white">{{ i.Type }}</button></p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cent:{{ i.Cent }}</li>
+                <li class="list-group-item">Price:{{ i.TotalPrice }}</li>
+                <li class="list-group-item">Place:{{ i.Street }}</li>
+              </ul>
+              <div class="card">
+                <a href="#" class="btn btn-primary view" name="{{ i.id }}">View Property Details</a>
+              </div>
+            </div>
+          </div>
+     </div>
+     {% endfor %}
+     
+            
+    </div>
+    <br>
+    <a href="{% url 'land_properties_show' %}" class="btn btn-primary">Show More Properties --></a>
+    <br><br>
+
+    <h4 class="alert alert-primary text-center">Residential</h2>
+
+      <div class="row">
+        {% for i in residential %}
+      <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="{% static 'images/land.png' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-title">For: <button class="btn btn-info text-white">{{ i.Type }}</button></p>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">BHK:{{ i.BhkType }}</li>
+              <li class="list-group-item">Price:{{ i.TotalPrice }}</li>
+              <li class="list-group-item">Place:{{ i.Street }}</li>
+            </ul>
+              <a href="#" class="btn btn-primary view" name="{{ i.id }}">Go somewhere</a>
+            </div>
+          </div>
+       </div>
+       {% endfor %}
+       
+              
+      </div>
+      <br>
+      <a href="{% url 'residential_properties_show' %}" class="btn btn-primary">Show More Properties --></a>
+      <br><br>
+
+      <h4 class="alert alert-primary text-center">Commercial</h2>
+
+        <div class="row">
+            {% for i in member %}
+        <div class="col-4">
+            <div class="card" style="width: 18rem;">
+                <img src="{% static 'images/land.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{ i.id }}</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary view" name="{{ i.id }}">Go somewhere</a>
+                </div>
+              </div>
+         </div>
+         {% endfor %}
+         
+                
+        </div>
+        <br>
+        <a href="{% url 'land_properties_show' %}" class="btn btn-primary">Show More Properties --></a>
+</div>
+
+<script src="{% static 'js/landView.js' %}"></script>
+{% endblock %}

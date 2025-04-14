@@ -1,0 +1,15 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block content %}
+<br><br>
+<div class="row">
+    <div class="col-6">
+        <a href="{% url 'admin_properties_categories' %}" class="btn btn-primary">Properties List Out</a>
+    </div>
+    <div class="col-6">
+        <a href="{% url 'admin_client_details' %}" class="btn btn-warning">Client Details</a>
+    </div>
+</div>
+
+{% endblock %}

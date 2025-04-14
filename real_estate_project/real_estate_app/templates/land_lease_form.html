@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<script src="{% static 'js/land_lease.js' %}"></script>
+<div class="container">
+    <h3 class="alert alert-warning text-center">Land Lease</h3>
+
+    <form class="form-inline" id="landLeaseForm" enctype="multipart/form-data"></form>
+    {% csrf_token %}
+    <h2 class="alert alert-primary">Property Details</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="Length" class="form-label">Length<span class="text-danger">*</span></label>
+                <div class="input-group mb-3">
+                    <input type="number" class="form-control" id="Length" name="Length" placeholder="Length"
+                        onkeyup="calculate()" required>
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="length-addon">ft.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="Width" class="form-label">Width<span class="text-danger">*</span></label>
+                <div class="input-group mb-3">
+                    <input type="number" class="form-control" id="Width" name="Width" placeholder="Width"
+                        onkeyup="calculate()" required>
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="width-addon">ft</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="PlotArea" class="form-label">Plot Area</label>
+                <div class="input-group mb-3">
+                    <input type="number" class="form-control" id="PlotArea" name="PlotArea" placeholder="Plot Area"
+                        disabled>
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="plot-area-addon">sq.ft</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="Cent" class="form-label">Cent</label>
+                <div class="input-group mb-3">
+                    <input type="number" class="form-control" id="Cent" name="Cent" placeholder="Cent" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="Acre" class="form-label">Acre</label>
+                <div class="input-group mb-3">
+                    <input type="number" class="form-control" id="Acre" name="Acre" placeholder="Acre" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <!-- Locality Details Start -->
+    <h4 class="alert alert-primary">Locality Details</h4>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="District" class="form-label">District Name <span class="text-danger">*</span></label>
+                <select name="District" id="District" class="form-control" required>
+                    <option selected disabled>--Choose--</option>
+                    <option value="Thoothukudi">Thoothukudi</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="Town" class="form-label">Town <span class="text-danger">*</span></label>
+                <select name="Town" id="Town" class="form-control" required>
+                    <option selected disabled>--Choose--</option>
+                    <option value="ALWARTHIRUNAGARI">ALWARTHIRUNAGARI</option>
+                    <option value="KARUNGULAM">KARUNGULAM</option>
+                    <option value="KAYATHAR">KAYATHAR</option>
+                    <option value="KOVILPATTI">KOVILPATTI</option>
+                    <option value="OTTAPIDARAM">OTTAPIDARAM</option>
+                    <option value="PUDUR">PUDUR</option>
+                    <option value="SATTANKULAM">SATTANKULAM</option>
+                    <option value="SRIVAIKUNDAM">SRIVAIKUNDAM</option>
+                    <option value="THOOTHUKUDI">THOOTHUKUDI</option>
+                    <option value="TIRUCHENDUR">TIRUCHENDUR</option>
+                    <option value="UDANGUDI">UDANGUDI</option>
+                    <option value="VILATHIKULAM">VILATHIKULAM</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="Street" class="form-label">Landmark / Street <span class="text-danger">*</span></label>
+                <input type="search" name="Street" id="Street" class="form-control" placeholder="e.g. Toovipuram street"
+                    required>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <!-- Locality Details End -->
+    <!-- Lease Details Start -->
+    <h4 class="alert alert-primary">Lease Details</h4>
+    <h5 class="alert alert-warning">Provide Lease details about your property</h5>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="ExpectedLease" class="form-label">Expected Lease Amount <span
+                        class="text-danger">*</span></label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="bi bi-currency-rupee"></i></span>
+                    <input type="number" name="ExpectedLease" class="form-control" id="ExpectedLease"
+                        placeholder="Enter Amount" min="1" required>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="ExpectedLeaseDuration" class="form-label">Expected Lease Duration<span
+                        class="text-danger">*</span></label>
+                <select name="ExpectedLeaseDuration" id="ExpectedLeaseDuration" class="form-control" required>
+                    <option value="">--Select--</option>
+                    <option value="1 Year">1 Year</option>
+                    <option value="2 Year">2 Year</option>
+                    <option value="3 Year">3 Year</option>
+                    <option value="4 Year">4 Year</option>
+                    <option value="5 Year">5 Year</option>
+                    <option value="6 Year">6 Year</option>
+                    <option value="7 Year">7 Year</option>
+                    <option value="8 Year">8 Year</option>
+                    <option value="9 Year">9 Year</option>
+                    <option value="10 Year">10 Year</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="Maintenance" class="form-label">Monthly Maintenance</label>
+                <select name="Maintenance" id="Maintenance" class="form-control" required>
+                    <option selected disabled>Select</option>
+                    <option value="Maintenance Include">Maintenance Include</option>
+                    <option value="Maintenance Extra">Maintenance Extra</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="Terms" class="form-label">Terms</label>
+                <textarea name="Terms" id="Terms" cols="30" rows="3" class="form-control"
+                    placeholder="Enter description (optional)" required></textarea>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <!-- Resale Details End -->
+
+    <!-- Property Image Upload Start -->
+
+    <h4 class="alert alert-primary">Property Images</h4>
+    <h5 class="alert alert-warning">Upload Images</h5>
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="mb-3">
+                <!-- Hidden file input -->
+                <input class="form-control" type="file" id="imageInput" multiple accept="image/*">
+                <!-- Custom button -->
+                <br>
+                <small id="imageUploadHelp" class="form-text text-muted">You can upload multiple images.</small>
+            </div>
+            <div id="imagePreview" class="d-flex flex-wrap"></div>
+        </div>
+    </div>
+
+
+    <!-- Modal for viewing images -->
+    <div class="modal fade" id="viewImageModal" tabindex="-1" aria-labelledby="viewImageModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewImageModalLabel">View Image</h5>
+                </div>
+                <div class="modal-body">
+                    <img id="modalImage" src="" class="img-fluid" alt="Image">
+                </div>
+            </div>
+        </div>
+    </div> <!-- Property Image Upload End -->
+    <hr>
+
+    <h4 class="alert alert-primary">Contact Details</h4>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="PrimaryNumber" class="form-label">Primary Number<span class="text-danger">*</span></label>
+                <input type="tel" name="PrimaryNumber" id="PrimaryNumber" class="form-control"
+                    placeholder="Enter Mobile Number" pattern="[0-9]{10}" required>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="SecondaryNumber" class="form-label">Secondary Number<span
+                        class="text-danger">*</span></label>
+                <input type="tel" name="SecondaryNumber" id="SecondaryNumber" class="form-control"
+                    placeholder="Enter Secondary Mobile Number" pattern="[0-9]{10}" required>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<!-- //land_resale_form -->
+
+{% endblock %}

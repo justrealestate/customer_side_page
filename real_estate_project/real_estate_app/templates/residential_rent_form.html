@@ -1,0 +1,363 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<title>Residential Rent Form</title>
+<!-- <script src="{% static 'js/form_validation.js' %}"></script> -->
+<script src="{% static 'js/residential_rent.js' %}"></script>
+<div class="container-fluid">
+    <form id="residentialRentForm" class="form" enctype="multipart/form-data">
+        <h3 class="alert alert-warning">Residential Rent</h3>
+        <!-- Property Details Start -->
+        {% csrf_token %}
+        <h4 class="alert alert-primary">Property Details</h4>
+        <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="BhkType" class="form-label">BHK Type <span class="text-danger">*</span></label>
+                    <select name="BhkType" id="BhkType" class="form-control">
+                        <option selected disabled>--Select--</option>
+                        <option value="1 RK">1 RK</option>
+                        <option value="1 BHK">1 BHK</option>
+                        <option value="2 BHK">2 BHK</option>
+                        <option value="3 BHK">3 BHK</option>
+                        <option value="4 BH">4 BHK</option>
+                        <option value="4+ BH">4+ BHK</option>
+                    </select>
+                </div>
+                <h6 id="BhkTypeAlert" class="text-danger" hidden><i class="bi bi-exclamation-circle-fill"></i>Please
+                    Select the BhkType</h6>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="Floor" class="form-label">Floor For Rent<span class="text-danger">*</span></label>
+                    <select name="Floor" id="Floor" class="form-control">
+                        <option selected disabled>--Select--</option>
+                        <option value="Ground Floor">Ground Floor</option>
+                        <option value="1 Floor">1 Floor</option>
+                        <option value="2 Floor">2 Floor</option>
+                        <option value="3 Floor">3 Floor</option>
+                        <option value="4 Floor">4 Floor</option>
+                        <option value="Above 4 Floor">Above 4 Floor</option>
+
+                    </select>
+
+                </div>
+                <h6 id="FloorAlert" class="text-danger" hidden><i class="bi bi-exclamation-circle-fill"></i>Please
+                    Select the Floor</h6>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="HouseType" class="form-label">House Type<span class="text-danger">*</span></label>
+                    <select name="HouseType" id="HouseType" class="form-control">
+                        <option selected disabled>--Select--</option>
+                        <option value="Separate House">Separate House</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Colony">Colony</option>
+                        <option value="">Join Houses</option>
+                    </select>
+                </div>
+                <h6 id="HouseTypeAlert" class="text-danger" hidden><i class="bi bi-exclamation-circle-fill"></i>Please
+                    Select the HouseType</h6>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="Parking" class="form-label">Parking<span class="text-danger">*</span></label>
+                    <select name="Parking" id="Parking" class="form-control">
+                        <option selected disabled>--Select--</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <h6 id="ParkingAlert" class="text-danger" hidden><i class="bi bi-exclamation-circle-fill"></i>Please
+                    Select the Parking</h6>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="Terrace" class="form-label">Terrace<span class="text-danger">*</span></label>
+                    <select name="Terrace" id="Terrace" class="form-control">
+                        <option selected disabled>--Select--</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <h6 id="TerraceAlert" class="text-danger" hidden><i class="bi bi-exclamation-circle-fill"></i>Please
+                    Select the Terrace</h6>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="Hall" class="form-label">Hall<span class="text-danger">*</span></label>
+                    <select name="Hall" id="Hall" class="form-control">
+                        <option value="" selected disabled>--Select--</option>
+                        <option value="No Hall">No Hall</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3+</option>
+                    </select>
+                </div>
+                <h6 id="HallAlert" class="text-danger" hidden><i class="bi bi-exclamation-circle-fill"></i>Please Select
+                    the Hall</h6>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="Bedroom" class="form-label">BedRoom<span class="text-danger">*</span></label>
+                    <select name="Bedroom" id="Bedroom" class="form-control">
+                        <option value="" selected disabled>--Select--</option>
+                        <option value="No Hall">No Bedroom</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3+</option>
+                    </select>
+                </div>
+                <h6 id="BedroomAlert" class="text-danger" hidden><i class="bi bi-exclamation-circle-fill"></i>Please
+                    Select the BedRoom</h6>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="Bathroom" class="form-label">BathRoom<span class="text-danger">*</span></label>
+                    <select name="Bathroom" id="Bathroom" class="form-control">
+                        <option value="" selected disabled>--Select--</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3+</option>
+                    </select>
+                </div>
+                <h6 id="BathroomAlert" class="text-danger" hidden><i class="bi bi-exclamation-circle-fill"></i>Please
+                    Select the BathRoom</h6>
+            </div>
+        </div>
+
+
+
+        <hr>
+        <!-- Property Details End -->
+
+        <!-- Locality Start -->
+        <h4 class="alert alert-primary">Locality Details</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="District" class="form-label">District <span class="text-danger">*</span></label>
+                    <select name="District" id="District" class="form-control">
+                        <option selected disabled>--Select--</option>
+                        <option value="thoothukudi">thoothukudi</option>
+                        <!-- {% for data in district %}
+                        <option value="{{ data.District }}">{{ data.District }}</option>
+                        {% endfor %} -->
+                    </select>
+                </div>
+                <h6 id="DistrictAlert" class="text-danger" hidden><i class="bi bi-exclamation-circle-fill"></i>Please
+                    Select the District</h6>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="Town" class="form-label">Town <span class="text-danger">*</span></label>
+                    <select name="Town" id="Town" class="form-control">
+                        <option selected disabled>--Choose--</option>
+                        <option value="thoothukudi">thoothukudi</option>
+                        <!-- {% for data in subDivision %}
+                        <option value="{{ data.Sub_Division }}">{{ data.Sub_Division }}</option>
+                        {% endfor %} -->
+                    </select>
+                </div>
+                <h6 id="TownAlert" class="text-danger" hidden><i class="bi bi-exclamation-circle-fill"></i>Please Select
+                    the Town</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="Street" class="form-label">Landmark / Street <span class="text-danger">*</span></label>
+                    <select name="Street" id="Street" class="form-control">
+                        <option selected disabled>--Choose--</option>
+                        <!-- {% for data in street %}
+                        <option value="{{ data.Street }}">{{ data.Street }}</option>
+                        {% endfor %} -->
+                        <option value="thoothukudi">thoothukudi</option>
+                    </select>
+                </div>
+            </div>
+            <h6 id="StreetAlert" class="text-danger" hidden><i class="bi bi-exclamation-circle-fill"></i>Please Select
+                the Street</h6>
+        </div>
+        <hr>
+        <!-- Locality Details End -->
+
+
+        <!-- Rental Details Start -->
+
+
+        <h4 class="alert alert-primary">Rental Details</h4>
+        <h5 class="alert alert-warning">Provide rental details about your property</h5>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="ExpectedRent" class="form-label">Expected Rent <span
+                            class="text-danger">*</span></label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="bi bi-currency-rupee"></i></span>
+                        <input type="number" name="ExpectedRent" class="form-control" id="ExpectedRent"
+                            placeholder="Enter Amount" min="1" onchange="RentCalculator()">
+                        <span class="input-group-text">/Month</span>
+                    </div>
+                </div>
+                <h6 id="ExpectedRentAlert" class="text-danger" hidden><i
+                        class="bi bi-exclamation-circle-fill"></i>Please Select the ExpectedRent</h6>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="ExpectedDepositMonths" class="form-label">Expected Deposit Months<span
+                            class="text-danger">*</span></label>
+                    <select name="ExpectedDepositMonths" id="ExpectedDepositMonths" class="form-control"
+                        onchange="RentCalculator()">
+                        <option value="">--Select--</option>
+                        <option value="0">No Deposit Need</option>
+                        <option value="1">1 Month</option>
+                        <option value="2">2 Months</option>
+                        <option value="3">3 Months</option>
+                        <option value="4">4 Months</option>
+                        <option value="5">5 Months</option>
+                        <option value="6">6 Months</option>
+                        <option value="7">7 Months</option>
+                        <option value="8">8 Months</option>
+                        <option value="9">9 Months</option>
+                        <option value="10">10 Months</option>
+                        <option value="11">11 Months</option>
+                        <option value="12">12 Months</option>
+                    </select>
+                </div>
+                <h6 id="ExpectedDepositMonthsAlert" class="text-danger" hidden><i
+                        class="bi bi-exclamation-circle-fill"></i>Please Select the Expected Deposit Months</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="ExpectedDeposit" class="form-label">Expected Deposit</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="bi bi-currency-rupee"></i></span>
+                        <input type="number" name="ExpectedDeposit" class="form-control" id="ExpectedDeposit" readonly>
+                    </div>
+                </div>
+                <h6 id="ExpectedDepositAlert" class="text-danger" hidden><i
+                        class="bi bi-exclamation-circle-fill"></i>Please Select the ExpectedDeposit</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="Maintenance" class="form-label">Monthly Maintenance</label>
+                    <select name="Maintenance" id="Maintenance" class="form-control">
+                        <option selected disabled>--Select--</option>
+                        <option value="Maintenance Include">Maintenance Include</option>
+                        <option value="Maintenance Extra">Maintenance Extra</option>
+                    </select>
+                </div>
+                <h6 id="MaintenanceAlert" class="text-danger" hidden><i class="bi bi-exclamation-circle-fill"></i>Please
+                    Select the Maintenance</h6>
+            </div>
+        </div>
+        <hr>
+        <h4 class="alert alert-primary">Tenant Requirements</h4>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="PreferredTenants" class="form-label">Preferred Tenants <span
+                            class="text-danger">*</span></label>
+                    <select name="PreferredTenants" id="PreferredTenants" class="form-control">
+                        <option selected disabled>--Choose--</option>
+                        <option value="Anyone">Anyone</option>
+                        <option value="Family">Family</option>
+                        <option value="Bachelor(Female)">Bachelor(Female)</option>
+                        <option value="Bachelor(Male)">Bachelor(Male)</option>
+                    </select>
+                </div>
+                <h6 id="PreferredTenantsAlert" class="text-danger" hidden><i
+                        class="bi bi-exclamation-circle-fill"></i>Please Select the Preferred Tenants</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="Terms" class="form-label">Terms and Conditions</label>
+                    <textarea name="Terms" id="Terms" cols="30" rows="3" class="form-control"></textarea>
+                </div>
+                <h6 id="TermsAlert" class="text-danger" hidden><i class="bi bi-exclamation-circle-fill"></i>Please fill
+                    the Terms & Conditions</h6>
+            </div>
+        </div>
+        <hr>
+
+        <h4 class="alert alert-primary">Upload Images</h4>
+        <div class="input-group mb-3">
+            <input type="file" class="form-control" id="imageInput" multiple accept="image/*">
+            <label class="input-group-text" for="imageInput">Upload</label>
+        </div>
+        <div class="row mt-4" id="imagePreview"></div>
+
+        <div class="modal fade" id="zoomModal" tabindex="-1" role="dialog" aria-labelledby="zoomModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="zoomModalLabel">Image Zoom</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <img id="zoomedImage" class="img-fluid w-100" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <h4 class="alert alert-primary">Contact Details</h4>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="PrimaryNumber" class="form-label">Primary Number<span
+                            class="text-danger">*</span></label>
+                    <input type="tel" name="PrimaryNumber" value="{{ Primary_number }}" id="PrimaryNumber" class="form-control"
+                        placeholder="Enter Mobile Number" pattern="[0-9]{10}">
+                </div>
+                <h6 id="PrimaryNumberAlert" class="text-danger" hidden><i
+                        class="bi bi-exclamation-circle-fill"></i>Please fill the PrimaryNumber</h6>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="SecondaryNumber" class="form-label">Secondary Number<span
+                            class="text-danger">*</span></label>
+                    <input type="tel" name="SecondaryNumber" id="SecondaryNumber" class="form-control"
+                        placeholder="Enter Secondary Mobile Number" pattern="[0-9]{10}">
+                </div>
+                <h6 id="SecondaryNumberAlert" class="text-danger" hidden><i
+                        class="bi bi-exclamation-circle-fill"></i>Please fill the SecondaryNumber</h6>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+
+
+        <!-- Rental Details End -->
+
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+  <h3 class="alert alert-info text-center">Profile</h3>
+  <div class="row">
+
+    <!-- Profile Image -->
+    <div class="col-6">
+      <img src="{% static 'images/default_profile_image.jpg' %}" alt="profile_image" class="img-thumbnail">
+    </div>
+
+    <!-- Username and Email -->
+    <div class="col-6">
+      {% for user in user_data %}
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" value="{{ user.Username }}" disabled>
+
+      <label for="email" class="form-label">Email</label>
+      <input type="email" name="email" class="form-control" value="{{ user.MobileNumber }}" disabled>
+
+      {% endfor %}
+    </div>
+  </div>
+  <hr>
+
+  <!-- Content 1 Start -->
+  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+    <input type="radio" class="btn-check" name="option" id="properties" autocomplete="off" checked>
+    <label class="btn btn-outline-primary" for="properties">Properties</label>
+
+    <input type="radio" class="btn-check" name="option" id="comingsoon1" autocomplete="off">
+    <label class="btn btn-outline-primary" for="comingsoon1">Coming soon</label>
+
+    <input type="radio" class="btn-check" name="option" id="comingsoon2" autocomplete="off">
+    <label class="btn btn-outline-primary" for="comingsoon2">Coming soon</label>
+  </div><br><br>
+
+  <div id="content1">
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+      <input type="radio" class="btn-check" name="option" id="land" autocomplete="off" checked>
+      <label class="btn btn-outline-warning" for="land">Land</label>
+
+      <input type="radio" class="btn-check" name="option" id="residential" autocomplete="off">
+      <label class="btn btn-outline-warning" for="residential">Residential</label>
+
+      <input type="radio" class="btn-check" name="option" id="commercial" autocomplete="off">
+      <label class="btn btn-outline-warning" for="commercial">Commercial</label>
+    </div><br><br>
+    <!-- Content 1 Child 1 Start -->
+    <div id="content11">
+      <div class="row">
+        {% if user_land_data %}
+        {% for data in user_land_data %}
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="{% static 'images/land.png' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-title">For: <button class="btn btn-info text-white">{{ data.Type }}</button></p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cent:{{ data.Cent }}</li>
+                <li class="list-group-item">Price:{{ data.TotalPrice }}</li>
+                <li class="list-group-item">Place:{{ data.Street }}</li>
+              </ul>
+              <div class="card">
+                <a href="#" class="btn btn-primary view" name="{{ data.id }}">View Property Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>no data</p>
+        {% endif %}
+      </div>
+    </div>
+    <div id="content22">
+      <div class="row"></div>
+      {% for data in user_residential_data %}
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="{% static 'images/land.png' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-title">For: <button class="btn btn-info text-white">{{ data.Type }}</button></p>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Cent:{{ data.Cent }}</li>
+              <li class="list-group-item">Price:{{ data.TotalPrice }}</li>
+              <li class="list-group-item">Place:{{ data.Street }}</li>
+            </ul>
+            <div class="card">
+              <a href="#" class="btn btn-primary view" name="{{ data.id }}">View Property Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div id="content33">
+    <div class="row"></div>
+    {% for data in user_residential_data %}
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <img src="{% static 'images/land.png' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-title">For: <button class="btn btn-info text-white">{{ data.Type }}</button></p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Cent:{{ data.Cent }}</li>
+            <li class="list-group-item">Price:{{ data.TotalPrice }}</li>
+            <li class="list-group-item">Place:{{ data.Street }}</li>
+          </ul>
+          <div class="card">
+            <a href="#" class="btn btn-primary view" name="{{ data.id }}">View Property Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!-- Content 1 End -->
+<br>
+<!-- Content 2 Start -->
+<div id="content2" style="display: none;">
+  <p id="demo2">products2</p>
+  <hr>
+  <p id="demo2">prices2</p>
+  <hr>
+  <p id="demo2">benifits2</p>
+  <hr>
+  <button class="btn btn-primary">Click</button>
+</div>
+<!-- Content 2 End -->
+
+<!-- Content 3 Start -->
+<div id="content3" style="display: none;">
+  <p id="demo3">products3</p>
+  <hr>
+  <p id="demo3">prices3</p>
+  <hr>
+  <p id="demo3">benifits3</p>
+  <hr>
+  <button class="btn btn-primary">Click</button>
+</div>
+<!-- Content 3 End -->
+</div>
+<script src="{% static 'js/profile.js' %}"></script>
+{% endblock %}

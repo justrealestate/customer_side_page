@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<script src="{% static 'js/land_rent.js' %}"></script>
+<div class="container">
+    <h4 class="alert alert-warning text-center">Commerical Rental</h4>
+    <form class="form-inline" id="landRentForm" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <h2 class="alert alert-primary">Property Details</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="Length" class="form-label">Length<span class="text-danger">*</span></label>
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" id="Length" name="Length" placeholder="Length"
+                            onkeyup="calculate()" min="1" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="length-addon">ft.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="Width" class="form-label">Width<span class="text-danger">*</span></label>
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" id="Width" name="Width" placeholder="Width"
+                            onkeyup="calculate()" min="1" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="width-addon">ft</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="PlotArea" class="form-label">Plot Area</label>
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" id="PlotArea" name="PlotArea" placeholder="00.00"
+                            disabled>
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="plot-area-addon">sq.ft</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="Cent" class="form-label">Cent</label>
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" id="Cent" name="Cent" placeholder="00.00" disabled>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <hr>
+        <!-- Locality Details Start -->
+        <h4 class="alert alert-primary">Locality Details</h4>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="District" class="form-label">District Name <span class="text-danger">*</span></label>
+                    <select name="District" id="District" class="form-control" required>
+                        <option selected>--Choose--</option>
+                        <option value="Thoothukudi">Thoothukudi</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="Town" class="form-label">Town <span class="text-danger">*</span></label>
+                    <select name="Town" id="Town" class="form-control" required>
+                        <option selected>--Choose--</option>
+                        <option value="ALWARTHIRUNAGARI">ALWARTHIRUNAGARI</option>
+                        <option value="KARUNGULAM">KARUNGULAM</option>
+                        <option value="KAYATHAR">KAYATHAR</option>
+                        <option value="KOVILPATTI">KOVILPATTI</option>
+                        <option value="OTTAPIDARAM">OTTAPIDARAM</option>
+                        <option value="PUDUR">PUDUR</option>
+                        <option value="SATTANKULAM">SATTANKULAM</option>
+                        <option value="SRIVAIKUNDAM">SRIVAIKUNDAM</option>
+                        <option value="THOOTHUKUDI">THOOTHUKUDI</option>
+                        <option value="TIRUCHENDUR">TIRUCHENDUR</option>
+                        <option value="UDANGUDI">UDANGUDI</option>
+                        <option value="VILATHIKULAM">VILATHIKULAM</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="Street" class="form-label">Landmark / Street <span class="text-danger">*</span></label>
+                    <input type="search" name="Street" id="Street" class="form-control"
+                        placeholder="e.g. Toovipuram street" required>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!-- Locality Details End -->
+        <h4 class="alert alert-primary">Rental Details</h4>
+        <h5 class="alert alert-warning">Provide rental details about your property</h5>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="ExpectedRent" class="form-label">Expected Rent <span
+                            class="text-danger">*</span></label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="bi bi-currency-rupee"></i></span>
+                        <input type="number" name="ExpectedRent" class="form-control" id="ExpectedRent"
+                            placeholder="Enter Amount" min="1" onkeyup="RentCalculator()" required>
+                        <span class="input-group-text">/Month</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="ExpectedDepositMonths" class="form-label">Expected Deposit Months<span
+                            class="text-danger">*</span></label>
+                    <select name="ExpectedDepositMonths" id="ExpectedDepositMonths" class="form-control"
+                        onchange="RentCalculator()" required>
+                        <option value="">--Select--</option>
+                        <option value="0">No Deposit Need</option>
+                        <option value="1">1 Month</option>
+                        <option value="2">2 Months</option>
+                        <option value="3">3 Months</option>
+                        <option value="4">4 Months</option>
+                        <option value="5">5 Months</option>
+                        <option value="6">6 Months</option>
+                        <option value="7">7 Months</option>
+                        <option value="8">8 Months</option>
+                        <option value="9">9 Months</option>
+                        <option value="10">10 Months</option>
+                        <option value="11">11 Months</option>
+                        <option value="12">12 Months</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="ExpectedDeposit" class="form-label">Expected Deposit <span
+                            class="text-danger">*</span></label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="bi bi-currency-rupee"></i></span>
+                        <input type="number" name="ExpectedDeposit" class="form-control" id="ExpectedDeposit" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="Maintenance" class="form-label">Monthly Maintenance</label>
+                    <select name="Maintenance" id="Maintenance" class="form-control">
+                        <option selected disabled>--Select--</option>
+                        <option value="Maintenance Include">Maintenance Include</option>
+                        <option value="Maintenance Extra">Maintenance Extra</option>
+                    </select>
+                </div>
+                <h6 id="MaintenanceAlert" class="text-danger" hidden><i class="bi bi-exclamation-circle-fill"></i>Please
+                    Select the Maintenance</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="Terms" class="form-label">Terms and Conditions</label>
+                    <textarea name="Terms" id="Terms" cols="30" rows="3" class="form-control"
+                        placeholder="Enter description (optional)" required></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!-- Resale Details End -->
+
+        <!-- Property Image Upload Start -->
+
+        <h4 class="alert alert-primary">Property Images</h4>
+        <h5 class="alert alert-warning">Upload Images</h5>
+
+
+
+        <div class="input-group mb-3">
+            <input type="file" class="form-control" name="imageInput" id="imageInput" multiple accept="image/*">
+            <label class="input-group-text" for="imageInput">Upload</label>
+        </div>
+        <div id="imagePreview" class="row g-3"></div>
+
+        <hr>
+
+        <h4 class="alert alert-primary">Contact Details</h4>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="PrimaryNumber" class="form-label">Primary Number<span
+                            class="text-danger">*</span></label>
+                    <input type="tel" name="PrimaryNumber" id="PrimaryNumber" class="form-control"
+                        placeholder="Enter Mobile Number" pattern="[0-9]{10}" required>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="SecondaryNumber" class="form-label">Secondary Number<span
+                            class="text-danger">*</span></label>
+                    <input type="tel" name="SecondaryNumber" id="SecondaryNumber" class="form-control"
+                        placeholder="Enter Secondary Mobile Number" pattern="[0-9]{10}" required>
+                </div>
+            </div>
+        </div>
+        <br><br>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+{% endblock %}

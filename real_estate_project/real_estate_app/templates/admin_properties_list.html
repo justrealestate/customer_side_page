@@ -1,0 +1,347 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block content %}
+<br>
+<a href="{% url 'admin_properties_categories' %}" class="btn btn-primary">BACK --></a>
+<br>
+
+{% if 'residential' == property_type %}
+
+<h2 class="alert alert-primary text-center">Residential All Properties</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Property Id</th>
+            <th>Customer Id</th>
+            <th>BhkType</th>
+            <th>Type</th>
+            <th>District</th>
+            <th>Street</th>
+            <th>Primary Number</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if residential %}
+        {% for i in residential %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.Property_Id }}</td>
+            <td>{{ i.Customer_Id }}</td>
+            <td>{{ i.BhkType }}</td>
+            <td>{{ i.Type }}</td>
+            <td>{{ i.District }}</td>
+            <td>{{ i.Street }}</td>
+            <td>{{ i.PrimaryNumber }}</td>
+            <td><a href="/view" class="btn btn-warning">View</a></td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="6">
+                <img src="{% static 'images/no_data.png' %}" class="img-thumbnail" alt="">
+            </td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+
+{% elif 'residential_rent' == property_type %}
+<h2 class="alert alert-primary text-center">Residential Rental Properties</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Property Id</th>
+            <th>Customer Id</th>
+            <th>BhkType</th>
+            <th>District</th>
+            <th>Street</th>
+            <th>Primary Number</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if residential_rent %}
+        {% for i in residential_rent %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.Property_Id }}</td>
+            <td>{{ i.Customer_Id }}</td>
+            <td>{{ i.BhkType }}</td>
+            <td>{{ i.District }}</td>
+            <td>{{ i.Street }}</td>
+            <td>{{ i.PrimaryNumber }}</td>
+            <td><a href="" class="btn btn-warning">View</a></td>
+        </tr>
+
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="6">
+                <img src="{% static 'images/no_data.png' %}" class="img-thumbnail" alt="">
+            </td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+
+
+{% elif 'residential_resale' == property_type %}
+
+<h2 class="alert alert-primary text-center">Residential Resale Properties</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Property Id</th>
+            <th>Customer Id</th>
+            <th>BhkType</th>
+            <th>District</th>
+            <th>Street</th>
+            <th>Primary Number</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if residential_resale %}
+        {% for i in residential_resale %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.Property_Id }}</td>
+            <td>{{ i.Customer_Id }}</td>
+            <td>{{ i.BhkType }}</td>
+            <td>{{ i.District }}</td>
+            <td>{{ i.Street }}</td>
+            <td>{{ i.PrimaryNumber }}</td>
+            <td><a href="" class="btn btn-warning">View</a></td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="6">
+                <img src="{% static 'images/no_data.png' %}" class="img-thumbnail" alt="">
+            </td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+
+
+{% elif 'residential_lease' == property_type %}
+<h2 class="alert alert-primary text-center">Residential Lease Properties</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Property Id</th>
+            <th>Customer Id</th>
+            <th>BhkType</th>
+            <th>District</th>
+            <th>Street</th>
+            <th>Primary Number</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if residential_lease %}
+        {% for i in residential_lease %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.Property_Id }}</td>
+            <td>{{ i.Customer_Id }}</td>
+            <td>{{ i.BhkType }}</td>
+            <td>{{ i.District }}</td>
+            <td>{{ i.Street }}</td>
+            <td>{{ i.PrimaryNumber }}</td>
+            <td><a href="" class="btn btn-warning">View</a></td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="6">
+                <img src="{% static 'images/no_data.png' %}" class="img-thumbnail" alt="">
+            </td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+
+{% elif 'land' == property_type %}
+<h2 class="alert alert-primary text-center">Land Properties All</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Property Id</th>
+            <th>Customer Id</th>
+            <th>PlotArea</th>
+            <th>District</th>
+            <th>Street</th>
+            <th>Primary Number</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if land %}
+        {% for i in land %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.Property_Id }}</td>
+            <td>{{ i.Customer_Id }}</td>
+            <td>{{ i.PlotArea }}</td>
+            <td>{{ i.District }}</td>
+            <td>{{ i.Street }}</td>
+            <td>{{ i.PrimaryNumber }}</td>
+            <td><a href="" class="btn btn-warning">View</a></td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="6">
+                <img src="{% static 'images/no_data.png' %}" class="img-thumbnail" alt="">
+            </td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+
+{% elif 'land_rent' == property_type %}
+<h2 class="alert alert-primary text-center">Land Rental Properties</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Property Id</th>
+            <th>Customer Id</th>
+            <th>BhkType</th>
+            <th>District</th>
+            <th>Street</th>
+            <th>Primary Number</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if land_rent %}
+        {% for i in land_rent %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.Property_Id }}</td>
+            <td>{{ i.Customer_Id }}</td>
+            <td>{{ i.BhkType }}</td>
+            <td>{{ i.District }}</td>
+            <td>{{ i.Street }}</td>
+            <td>{{ i.PrimaryNumber }}</td>
+            <td><a href="" class="btn btn-warning">View</a></td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="6">
+                <img src="{% static 'images/no_data.png' %}" class="img-thumbnail" alt="">
+            </td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+
+{% elif 'land_resale' == property_type %}
+
+<h2 class="alert alert-primary text-center">Land Resale Properties</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Property Id</th>
+            <th>Customer Id</th>
+            <th>BhkType</th>
+            <th>District</th>
+            <th>Street</th>
+            <th>Primary Number</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% if land_resale %}
+        {% for i in land_resale %}
+
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.Property_Id }}</td>
+            <td>{{ i.Customer_Id }}</td>
+            <td>{{ i.BhkType }}</td>
+            <td>{{ i.District }}</td>
+            <td>{{ i.Street }}</td>
+            <td>{{ i.PrimaryNumber }}</td>
+            <td><a href="" class="btn btn-warning">View</a></td>
+        </tr>
+
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="6">
+                <img src="{% static 'images/no_data.png' %}" class="img-thumbnail" alt="">
+            </td>
+        </tr>
+        {% endif %}
+
+    </tbody>
+</table>
+
+
+{% elif 'land_lease' == property_type %}
+
+<h2 class="alert alert-primary text-center">Land Lease Properties</h2>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>S.No</th>
+            <th>Property Id</th>
+            <th>Customer Id</th>
+            <th>BhkType</th>
+            <th>District</th>
+            <th>Street</th>
+            <th>Primary Number</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if land_lease %}
+        {% for i in land_lease %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.Property_Id }}</td>
+            <td>{{ i.Customer_Id }}</td>
+            <td>{{ i.BhkType }}</td>
+            <td>{{ i.District }}</td>
+            <td>{{ i.Street }}</td>
+            <td>{{ i.PrimaryNumber }}</td>
+            <td><a href="" class="btn btn-warning">View</a></td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="6">
+                <img src="{% static 'images/no_data.png' %}" class="img-thumbnail" alt="">
+            </td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+
+{% endif %}
+
+
+
+{% endblock %}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Map Embed Example</title>
+</head>
+<body>
+  <!-- Replace "YOUR_PLACE_NAME" with the place name you want to display -->
+  {% for i in property_view %}
+  <iframe
+    width="600"
+    height="450"
+    frameborder="0"
+    style="border:0"
+    src="https://www.google.com/maps/embed/v1/place?q={{ i.city }}&key=AIzaSyCCk1DZr4QUATNU8Ns62Ci8F7Iv9xQze2U"
+    allowfullscreen
+  ></iframe>
+  {% endfor %}
+</body>
+</html>

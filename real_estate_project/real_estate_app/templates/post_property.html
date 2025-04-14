@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid">
+  <h3 class="alert alert-primary text-center">Property Listings</h3>
+  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+    <input type="radio" class="btn-check" name="option" id="residential_option" autocomplete="off" checked>
+    <label class="btn btn-outline-primary" for="residential_option">Residential</label>
+
+    <input type="radio" class="btn-check" name="option" id="commerical_option" autocomplete="off">
+    <label class="btn btn-outline-primary" for="commerical_option">Commercial</label>
+
+    <input type="radio" class="btn-check" name="option" id="land_option" autocomplete="off">
+    <label class="btn btn-outline-primary" for="land_option">Land</label>
+  </div>
+  <div id="residential">
+    <div class="row">
+      <h3 class="alert alert-warning text-center">Residential</h3>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="{% static 'images/residential.png' %}" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title">Residential - Rent</h5>
+            <a href="{% url 'residential_rent_form' %}" class="btn btn-primary">Start Posting Your Ad For Free</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="{% static 'images/residential.png' %}" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title">Residential - Resale</h5>
+            <a href="{% url 'residential_resale_form' %}" class="btn btn-primary">Start Posting Your Ad For Free</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="{% static 'images/residential.png' %}" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title">Residential - Lease</h5>
+            <a href="{% url 'residential_lease_form' %}" class="btn btn-primary">Start Posting Your Ad For Free</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="commerical" style="display: none;">
+    <div class="row">
+      <h4 class="alert alert-warning text-center">Commercial</h4>
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <img src="{% static 'images/commercial.png' %}" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title">Commercial - Rent</h5>
+            <a href="{% url 'commercial_rent_form' %}" class="btn btn-primary">Start Posting Your Ad For Free</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <img src="{% static 'images/commercial.png' %}" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title">Commercial - Sale</h5>
+            <a href="{% url 'commercial_sale_form' %}" class="btn btn-primary">Start Posting Your Ad For Free</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="land" style="display: none;">
+    <div class="row">
+      <h3 class="alert alert-warning text-center">Land/Plot</h3>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="{% static 'images/land.png' %}" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title">Land/Plot - Rent</h5>
+            <a href="{% url 'land_rent_form' %}" class="btn btn-primary">Start Posting Your Ad For Free</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="{% static 'images/land.png' %}" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title">Land/Plot - Resale</h5>
+            <a href="{% url 'land_resale_form' %}" class="btn btn-primary">Start Posting Your Ad For Free</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="{% static 'images/land.png' %}" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title">Land/Plot - Lease</h5>
+            <a href="{% url 'land_lease_form' %}" class="btn btn-primary">Start Posting Your Ad For Free</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('residential_option').addEventListener('click', myFunction);
+  document.getElementById('commerical_option').addEventListener('click', myFunction);
+  document.getElementById('land_option').addEventListener('click', myFunction);
+
+  function myFunction(event) {
+    const selectedId = event.target.id;
+
+    // Hide all content sections
+    document.getElementById("residential").style.display = "none";
+    document.getElementById("commerical").style.display = "none";
+    document.getElementById("land").style.display = "none";
+
+    // Show the corresponding content section
+    if (selectedId === "residential_option") {
+      document.getElementById("residential").style.display = "block";
+
+    } else if (selectedId === "commerical_option") {
+      document.getElementById("commerical").style.display = "block";
+
+    } else if (selectedId === "land_option") {
+      document.getElementById("land").style.display = "block";
+
+    }
+  }
+
+</script>
+
+{% endblock %}

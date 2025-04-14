@@ -1,0 +1,320 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<script src="{% static 'js/residential_resale.js' %}"></script>
+
+
+<div class="container">
+    <form class="form" id="residentialResaleForm" enctype="multipart/form-data">
+        <h3 class="alert alert-warning">Residential Resale</h3>
+        <!-- Property Details Start -->
+        {% csrf_token %}
+        <h4 class="alert alert-primary">Property Details</h4>
+        <h6 class="alert alert-info">House</h6>
+        <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="BhkType" class="form-label">BHK Type <span class="text-danger">*</span></label>
+                    <select name="BhkType" id="BhkType" class="form-control">
+                        <option selected disabled>Select</option>
+                        <option value="1 RK">1 RK</option>
+                        <option value="1 BHK">1 BHK</option>
+                        <option value="2 BHK">2 BHK</option>
+                        <option value="3 BHK">3 BHK</option>
+                        <option value="4 BH">4 BHK</option>
+                        <option value="4+ BH">4+ BHK</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="TotalFloor" class="form-label">Total Floor<span class="text-danger">*</span></label>
+                    <select name="TotalFloor" id="TotalFloor" class="form-control">
+                        <option selected disabled>Select</option>
+                        <option value="No Floor">No Floor</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4+</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="PropertyAge" class="form-label">Property Age<span class="text-danger">*</span></label>
+                    <select name="PropertyAge" id="PropertyAge" class="form-control">
+                        <option selected disabled>Select</option>
+                        <option value="Less than a Year">Less than a Year</option>
+                        <option value="1 to 3 Years">1 to 3 Years</option>
+                        <option value="3 to 5 Years">3 to 5 Years</option>
+                        <option value="5 to 10 Years">5 to 10 Years</option>
+                        <option value="More than 10 Years">More than 10 Years</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="HouseLength" class="form-label">House Length<span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <input type="number" name="HouseLength" id="HouseLength" class="form-control"
+                            placeholder="Length" min="1" onkeyup="Calculate()" step="0.01">
+                        <span class="input-group-text" id="basic-addon2">ft.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="HouseWidth" class="form-label">House Width<span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <input type="number" name="HouseWidth" id="HouseWidth" class="form-control" placeholder="Width"
+                            min="1" onkeyup="Calculate()" step="0.01">
+                        <span class="input-group-text" id="basic-addon2">ft.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="HousePlotArea" class="form-label">Plot Area</label>
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" id="HousePlotArea" name="HousePlotArea"
+                            placeholder="Plot Area" readonly>
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="plot-area-addon">sq.ft</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="HouseCent" class="form-label">Cent</label>
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" id="HouseCent" name="HouseCent" placeholder="Cent"
+                            readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h6 class="alert alert-info">Land</h6>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="LandLength" class="form-label">Land Length<span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <input type="number" name="LandLength" id="LandLength" class="form-control" placeholder="Length"
+                            min="1" onkeyup="Calculate()" step="0.01">
+                        <span class="input-group-text" id="basic-addon2">ft.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="LandWidth" class="form-label">Land Width<span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <input type="number" name="LandWidth" id="LandWidth" class="form-control" placeholder="Width"
+                            min="1" onkeyup="Calculate()" step="0.01">
+                        <span class="input-group-text" id="basic-addon2">ft.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="LandPlotArea" class="form-label">Plot Area</label>
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" id="LandPlotArea" name="LandPlotArea"
+                            placeholder="Plot Area" readonly>
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="plot-area-addon">sq.ft</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="LandCent" class="form-label">Cent</label>
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" id="LandCent" name="LandCent" placeholder="Cent"
+                            readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h6 class="alert alert-info">Amenities</h6>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="Parking" class="form-label">Parking<span class="text-danger">*</span></label>
+                    <select name="Parking" id="Parking" class="form-control">
+                        <option value="" selected disabled>--Select--</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="Terrace" class="form-label">Terrace<span class="text-danger">*</span></label>
+                    <select name="Terrace" id="Terrace" class="form-control">
+                        <option value="" selected disabled>--Select--</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="Hall" class="form-label">Hall<span class="text-danger">*</span></label>
+                    <select name="Hall" id="Hall" class="form-control">
+                        <option value="" selected disabled>--Select--</option>
+                        <option value="No Hall">No Hall</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3+</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="Bedroom" class="form-label">BedRoom<span class="text-danger">*</span></label>
+                    <select name="Bedroom" id="Bedroom" class="form-control">
+                        <option value="" selected disabled>--Select--</option>
+                        <option value="No Hall">No Bedroom</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3+</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="Bathroom" class="form-label">BathRoom<span class="text-danger">*</span></label>
+                    <select name="Bathroom" id="Bathroom" class="form-control">
+                        <option value="" selected disabled>--Select--</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3+</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!-- Property Details End -->
+
+        <!-- Locality Start -->
+        <h4 class="alert alert-primary">Locality Details</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="District" class="form-label">District <span class="text-danger">*</span></label>
+                    <select name="District" id="District" class="form-control">
+                        <option selected disabled>Select</option>
+                        {% for i in district %}
+                        <option value="{{ i.District }}">{{ i.District }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="Town" class="form-label">Town <span class="text-danger">*</span></label>
+                    <select name="Town" id="Town" class="form-control">
+                        <option selected disabled>--Choose--</option>
+                        {% for i in district %}
+                        <option value="{{ i.Division }}">{{ i.Division }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="Street" class="form-label">Landmark / Street <span class="text-danger">*</span></label>
+                    <input type="search" name="Street" id="Street" class="form-control" placeholder="E.g.KVK Nagar">
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!-- Locality Details End -->
+
+
+        <!-- Rental Details Start -->
+
+
+        <h4 class="alert alert-primary">Resale Details</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="ExpectedPrice" class="form-label">Expected Price <span
+                            class="text-danger">*</span></label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="bi bi-currency-rupee"></i></span>
+                        <input type="number" name="ExpectedPrice" class="form-control" id="ExpectedPrice"
+                            placeholder="Enter Amount" min="1">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="Description" class="form-label">Description</label>
+                    <textarea name="Description" id="Description" cols="30" rows="3" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h4 class="alert alert-primary">Upload Images</h4>
+        <div class="input-group mb-3">
+            <input type="file" class="form-control" name="images" id="imageInput" multiple accept="image/*">
+            <label class="input-group-text btn btn-primary" for="Images">Upload</label>
+        </div>
+        <hr>
+        <h4 class="alert alert-primary">Contact Details</h4>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="PrimaryNumber" class="form-label">Primary Number<span
+                            class="text-danger">*</span></label>
+                    <input type="tel" name="PrimaryNumber" id="PrimaryNumber" class="form-control"
+                        placeholder="Enter Mobile Number" pattern="[0-9]{10}">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="SecondaryNumber" class="form-label">Secondary Number<span
+                            class="text-danger">*</span></label>
+                    <input type="tel" name="SecondaryNumber" id="SecondaryNumber" class="form-control"
+                        placeholder="Enter Secondary Mobile Number" pattern="[0-9]{10}">
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
+
+{% endblock %}

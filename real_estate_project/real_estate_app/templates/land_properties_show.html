@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <!-- Filter Toggle Button -->
+        <div class="col-md-12 mb-3">
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#filter-section"
+                aria-expanded="false" aria-controls="filter-section">
+                Toggle Filters
+            </button>
+        </div>
+
+        <!-- Filter Options -->
+        <div class="collapse col-md-12" id="filter-section">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    Filters
+                </div>
+                <div class="card-body">
+                    <form id="filter-form">
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Location</label>
+                            <select id="location" class="form-select">
+                                <option value="">Select Location</option>
+                                <option value="city1">City 1</option>
+                                <option value="city2">City 2</option>
+                                <option value="city3">City 3</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="propertyType" class="form-label">Property Type</label>
+                            <select id="propertyType" class="form-select">
+                                <option value="">Select Type</option>
+                                <option value="apartment">Apartment</option>
+                                <option value="house">House</option>
+                                <option value="villa">Villa</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="priceRange" class="form-label">Price Range</label>
+                            <input type="range" class="form-range" id="priceRange" min="0" max="100000" step="5000">
+                            <div class="d-flex justify-content-between">
+                                <span>$0</span>
+                                <span>$100,000+</span>
+                            </div>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Apply Filters</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Properties List -->
+        <div class="col-md-12">
+            <div id="property-list">
+                {% for data in land_data %}
+                <!-- Example Property -->
+                <div class="card mb-4">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    {% for land_image in land_images %}
+                                    <button type="button" data-bs-target="#carouselExampleFade"
+                                        data-bs-slide-to="{{ forloop.counter0 }}"
+                                        class="{% if forloop.first %}active{% endif %}"
+                                        aria-current="{% if forloop.first %}true{% endif %}"
+                                        aria-label="Slide {{ forloop.counter }}"></button>
+                                    {% endfor %}
+
+                                </div>
+                                <div class="carousel-inner">
+                                    {% for land_image in land_images %}
+                                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                        <img src="{{ land_image.Image.url }}" class="d-block w-100"
+                                            alt="{{ forloop.counter }}1">
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ data.Property_Id }}-3 BHK Apartment in City Center</h5>
+                                <p class="card-text">Spacious apartment with all modern amenities. Close to shopping
+                                    centers and schools.</p>
+                                <p class="card-text text-muted">$75,000</p>
+                                <p class="card-text">{{ i.Type }}</p>
+                                <a href="land_view/{{ i }}" class="btn btn-primary">View Property</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- Add more property cards as needed -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/landView.js' %}"></script>
+{% endblock %}

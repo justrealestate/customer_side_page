@@ -1,0 +1,42 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h3 class="alert alert-info text-center">Customer Profile</h3>
+<h5 class="alert alert-success text-center">Customer Info</h5>
+<div class="row">
+    <div class="col-6">
+        <img src="" alt="" class="img-thumbnail">
+    </div>
+    <div class="col-6">
+        {% for i in customer_data %}
+        <label for="" class="form-label">Customer ID</label>
+        <input type="text" class="form-control" value="{{ i.Customer_id }}" readonly>
+        <label for="" class="form-label">Username</label>
+        <input type="text" class="form-control" value="{{ i.Username }}" readonly>
+        <label for="" class="form-label">Email</label>
+        <input type="text" class="form-control" value="{{ i.MobileNumber }}" readonly>
+        {% endfor %}
+
+    </div>
+</div>
+<hr>
+<h5 class="alert alert-success text-center">Properties Info</h5>
+
+<div class="row">
+    <div class="col-4">
+        <input type="radio" class="btn-check" name="options-outlined" id="residential" autocomplete="off" checked>
+        <label class="btn btn-outline-success" for="residential">Residential</label>
+    </div>
+    <div class="col-4">
+        <input type="radio" class="btn-check" name="options-outlined" id="land" autocomplete="off">
+        <label class="btn btn-outline-danger" for="land">Land</label>
+    </div>
+    <div class="col-4">
+        <input type="radio" class="btn-check" name="options-outlined" id="commercial" autocomplete="off">
+        <label class="btn btn-outline-danger" for="commercial">Commercial</label>
+    </div>
+</div>
+
+{% endblock %}
